@@ -1,17 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {ethers} from 'ethers';
+import deploy from './deploy';
+import displayContract from './displayContract';
+import "./index.scss";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+let contracts = 0;
+async function newContract() {
+  const beneficiary = document.getElementById("beneficiary").value;
+  const arbiter = document.getElementById("arbiter").value;
+  const value = ethers.utils.parseEther(document.getElementById("wei").value);
+  const contract = await deploy(arbiter, beneficiary, value);
+  if(contract) {
+    displayContract(++contracts, contract, arbiter, beneficiary, value);
+  }
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+async function loadNetworkId() {
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const network = await provider.getNetwork();
+  document.getElementById("network-id").innerHTML = `connected to ${network.name}`;
+}
+
+window.ethereum.on('chainChanged', loadNetworkId);
+loadNetworkId();
+
+document.getElementById("deploy").addEventListener("click", newContract);
