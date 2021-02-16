@@ -1,14 +1,21 @@
 {
-  "name": "app",
+  "name": "liquidefi",
   "version": "0.1.0",
+  "description": "LiquiDeFi frontend",
+  "main": "index.js",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
+    "@metamask/detect-provider": "^1.2.0",
+    "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "bootstrap": "^4.6.0",
+    "hardhat": "^2.0.8",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.4.3",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.2",
+    "remove": "^0.1.5",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -34,5 +41,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^7.29.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "ethereum-waffle": "^3.2.2",
+    "typescript": "^4.1.3"
   }
 }

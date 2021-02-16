@@ -11,6 +11,7 @@ const chalk = require('chalk');
 // Configure network
 const INFURA_PROJECT_ID = process.env.INFURA_PID;
 const KOVAN_PRIVATE_KEY = process.env.KOVAN_KEY;
+const FORKING_ID = process.env.FORKING_ID;
 
 module.exports = {
   solidity: {
@@ -36,25 +37,30 @@ module.exports = {
     kovan: {
       url: `https://kovan.infura.io/v3/${INFURA_PROJECT_ID}`,
       accounts: [`0x${KOVAN_PRIVATE_KEY}`]
-      //url: `https://kovan.infura.io/v3/` + process.env.INFURA_PROJECT_ID,
     }
+    // hardhat: {
+    //   forking: {
+    //     url: `https://eth-mainnet.alchemyapi.io/v2/${FORKING_ID}`,
+    //     blockNumber: 11395144
+    //   }
+    // }
   },
   watcher: {
       tasks: ["compile"],
-      files: ["app"]
+      files: ["app", "contracts"]
   },
   paths: {
     sources: './contracts',
     tests: './test',
     cache: './cache',
-    artifacts: './app/artifacts',
+    artifacts: './artifacts', 
     deploy: "./deploy",
     deployments: './deployments',
     imports: './imports'
   },
   abiExporter: {
     path: './app/src/abis',
-    clear: false,
+    clear: true,
     flat: true,
     only: []
   },

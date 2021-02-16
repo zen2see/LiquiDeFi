@@ -1,3 +1,58 @@
+/*
+
+WEB OPTIMIZATIONS CRITICAL RENDER PATH
+DOM [HTML] -> CSS JS loaded -> CSSOM - JS executed DOMContentLoaded -> 
+RENDER TREE -> LAYOUT -> PAINT
+- Reduce images
+- Use only pixel size that the picture is
+- Style tag in head
+- Script tag right before body (except things like google analytics)
+- Only load what is needed (css file smaller or less sheets -see below)
+  <script tpe="text/javascript">
+    const loadStyleSheet = src => {
+      if (document.createStylesheet) {
+        document.createStylesheet(src)
+      } else {
+        const stylesheet = document.create('link');
+        stylesheet.href= src;
+        stylesheet.type = 'text/css';
+        stylesheet.re = 'stylesheet';
+        document.getElementByTagName('head')[0].appendChild(stylesheet)
+      }
+    }
+  window.onload = function() {
+     console.log('window done');
+     loadStylesheet('./style3.css')
+  } 
+  EXAMPLE OF WHAT LOADS FIRST - add all three <SCRIPT>script.js(1)(2)</SCRIPT> to end of </BODY>
+  script.js
+  document.addEventListener("DOMContentLoaded", function(event) {
+    console.log("DOM fully loaded and parsed");
+  });
+  window.addEventListener("load", function(event) {
+    console.log("All resources finished loading!");
+  });
+  console.log("this is script 1")
+  script2.js
+  console.log("this is script 2")
+  script3.js
+  console.log("this is script 3")
+- @Media quieries
+- load scripts async <Script Async> (that doesn't effect DOM or CSSOM like google scripts)
+- load scripts defer <Script defer> (not important before the fold)
+- Minimize DOM manipulation
+CHECK PageSpeed Insights (Google) and webpagetest.org -minimize
+DNS PREFETCHING <link rel="dns-prefetch" href="//example.com"> in <HEAD> if we are loading example.com
+PRECONNECT <link rel="preconnect" href="https://css-tricks.com"> in <HEAD> starts TCP handshake
+PREFETCHING <link rel="prefetch" href="image.png"> in <HEAD> cache objects
+SUBRESOURCES <link rel="subresource" href="styles.css"> for important resources to load first
+PRERENDER <link rel="prerender" href="https://css-tricks.com"> if your shore load everything right away
+https://www.udemy.com/course/the-complete-junior-to-senior-web-developer-roadmap/learn/lecture/10210456#overview
+
+
+*/
+
+
 .App {
   text-align: center;
 }
@@ -113,6 +168,14 @@ bottom: .5em;
     transform: rotate(360deg);
   }
 }
+
+/*
+.App-backgroundImg {
+  background: url('large-background.png') no-repeat center center fixed;
+  background-size: cover;
+}
+*/
+
 
 /* .App {
   text-align: center;

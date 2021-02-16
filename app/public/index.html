@@ -9,6 +9,15 @@
       name="description"
       content="Web site created using create-react-app"
     />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -24,10 +33,11 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>LiquiDeFi React DAPP</title>
   </head>
-  <body>
+  <body style="background-color: #282c34" >
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <!--<script src="./index.js"></script>-->
     <div id="root"></div>
     <!--
       This HTML file is a template.
@@ -38,6 +48,57 @@
 
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
+      style="background-image: url('./liquidmountain.jpeg'); no-repeat
+      style="color: grey"
     -->
+    <div class="container">
+      <div class="row">
+        <nav className="navbar navbar-dark fixed-top bg-dark flex-sm-nowrap p-0 shadow">
+        <h2 class="pl-4 pt-2 text-primary"><br /></h2>
+        </nav>
+      </div>
+      <div class="container">
+        <div class="network bg-info text-white" >
+          <h1>LiquiDeFi</h1><h2>ESCROW the DeFi Way</h2></ESCROW> <br>
+            This is a concept contract on the Kovan Network using the AAVE LendingPool with the DAI ERC20 tokens. </br>
+            You are currently <div id="network-id">not connected</div>
+        </div>
+      </div>
+
+      <div class="ui">
+        <div class="contract bg-info ">
+          <h2 class="text-warning"> New Contract </h2>
+          <label>
+            Escrow Manager Address
+            <input type="text" id="manager"/>
+          </label>
+  
+          <label>
+            Escrow Receiver Address
+            <input type="text" id="receiver"/>
+          </label>
+  
+          <label>
+            Deposit Amount (DAI)
+            <input type="text" id="wei"/>
+          </label>
+  
+          <div class="button" id="deploy">
+            Approve DAI & Deploy
+          </div>
+        </div>
+  
+        <div class="existing-contracts bg-info">
+          <h2 class="text-warning"> Existing Contracts </h2>
+  
+          <div id="container">
+              <!-- where existing contracts will go -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="./index.js"></script>
   </body>
 </html>

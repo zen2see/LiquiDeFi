@@ -19,17 +19,17 @@ export default async function displayContract(id, contract, arbiter, beneficiary
   });
 }
 
-function createHTML(buttonId, arbiter, beneficiary, address, value) {
+function createHTML(buttonId, manager, receiver, address, value) {
   return `
     <div class="existing-contract">
       <ul className="fields">
         <li>
           <div> Arbiter </div>
-          <div> ${arbiter} </div>
+          <div> ${manager} </div>
         </li>
         <li>
           <div> Beneficiary </div>
-          <div> ${beneficiary} </div>
+          <div> ${receiver} </div>
         </li>
         <li>
           <div> View on Etherscan: </div>

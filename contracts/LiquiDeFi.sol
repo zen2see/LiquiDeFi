@@ -12,6 +12,7 @@ import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "./interfaces/ILendingPoolAddressesProvider.sol";
 import "./interfaces/ILendingPool.sol";
+import 'hardhat/console.sol';
 
 contract LiquiDeFi {
     // Addressess for ESCROW
@@ -48,7 +49,6 @@ contract LiquiDeFi {
         IERC20 _aDai, 
         IERC20 _dai, 
         address _escrowManager, 
-        address _escrowDepositor,
         address _escrowReceiver,
         uint _amount
     )
@@ -57,8 +57,8 @@ contract LiquiDeFi {
         aDai = _aDai;
         dai = _dai;
         escrowManager = _escrowManager;
-        escrowDepositor = msg.sender;
         escrowReceiver = _escrowReceiver;
+        escrowDepositor = msg.sender;
         initialDeposit = _amount;
         dai.transferFrom(msg.sender, address(this), _amount);
         dai.approve(address(lendpool), _amount);
@@ -70,6 +70,7 @@ contract LiquiDeFi {
     function approve() external {
         require(msg.sender == escrowManager, "Approve must be called by the arbiter!");
         uint balance = aDai.balanceOf(address(this));
+        aDai.approve(address(lendpool), balance);
         lendpool.withdraw(address(dai), initialDeposit, escrowReceiver);
         lendpool.withdraw(address(dai), type(uint).max, escrowDepositor);
         emit Approved();
